@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Vourcher-App | Client Portal</title><link rel="stylesheet" href="../shared/css/styles.css"></head>
+<body>
+<header class="topbar"><a class="brand" href="../index.html">TEPs <span>Electronics</span></a><span class="pill">Client portal</span></header>
+<main class="container">
+  <a class="back-link" href="../index.html">← Home</a>
+  <section class="hero"><p class="eyebrow">CLIENT PORTAL</p><h1>Request your Wi-Fi voucher.</h1><p>Enter your details and preferred package. This form is a visual prototype only.</p></section>
+  <section class="panel"><h2>New voucher request</h2>
+  <form id="request-form">
+    <label>Full name<input name="customer_name" required maxlength="100" autocomplete="name" placeholder="Your full name"></label>
+    <label>Phone number<input name="phone" required maxlength="30" autocomplete="tel" placeholder="07..."></label>
+    <label>Package / plan<input name="package_name" required maxlength="100" placeholder="e.g. 2-hour Wi-Fi"></label>
+    <label>Amount (USD)<input name="amount" required type="number" min="0.01" step="0.01" placeholder="1.00"></label>
+    <label class="full-width">EcoCash reference (optional)<input name="payment_reference" maxlength="120" placeholder="Enter after payment"></label>
+    <button type="submit">Prepare request</button>
+    <p id="form-message" class="notice full-width" role="status">Demo only: no request is saved and no payment is verified.</p>
+  </form></section>
+  <footer>Need help? Contact TEPs Electronics on <strong>0771906932</strong>.</footer>
+</main>
+<script src="../shared/js/config.js"></script><script src="../shared/js/client.js"></script>
+</body></html>
