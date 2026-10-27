@@ -1,39 +1,56 @@
 import { useState } from "react";
 import Link from "next/link";
 
+const inputClass = "w-full rounded-xl border border-slate-200 bg-white px-4 py-3.5 text-sm font-medium text-slate-900 outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-sky-500 focus:ring-4 focus:ring-sky-100";
+
 export default function ClientPortalPage() {
-  const [message, setMessage] = useState("Demo only: no request is saved and no payment is verified.");
+  const [message, setMessage] = useState("");
   function submit(event) {
     event.preventDefault();
-    setMessage("Prototype only: no request was saved. Supabase backend integration is not active yet.");
+    setMessage("This is a design preview. Your request has not been saved because the Supabase connection is not active yet.");
   }
+
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-800">
-      <header className="flex items-center justify-between bg-slate-950 px-5 py-4 text-white sm:px-8">
-        <Link className="text-lg font-extrabold tracking-tight" href="/">TEPs <span className="text-sky-300">Electronics</span></Link>
-        <span className="rounded-full border border-slate-700 px-3 py-1.5 text-xs text-slate-200">Client portal</span>
+    <div className="min-h-screen bg-slate-50 text-slate-900">
+      <header className="border-b border-slate-200 bg-white">
+        <nav className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 sm:px-8">
+          <Link href="/" className="flex items-center gap-3"><span className="grid h-10 w-10 place-items-center rounded-xl bg-slate-950 text-lg font-black text-sky-300">T</span><span><span className="block font-black tracking-tight">TEPs Electronics</span><span className="mt-0.5 block text-[10px] font-bold uppercase tracking-[0.22em] text-slate-500">Voucher portal</span></span></Link>
+          <Link href="/" className="rounded-lg px-3 py-2 text-sm font-bold text-slate-600 transition hover:bg-slate-100 hover:text-slate-950">← Back to home</Link>
+        </nav>
       </header>
-      <main className="mx-auto max-w-5xl px-5 py-8 sm:px-8">
-        <Link className="text-sm font-bold text-sky-700 hover:text-sky-900" href="/">← Home</Link>
-        <section className="py-9">
-          <p className="text-xs font-extrabold tracking-[0.22em] text-sky-700">CLIENT PORTAL</p>
-          <h1 className="mt-3 text-4xl font-black tracking-tight text-slate-950 sm:text-5xl">Request your Wi-Fi voucher.</h1>
-          <p className="mt-4 max-w-2xl leading-7 text-slate-600">Enter your details and preferred package. This form is a visual prototype only.</p>
-        </section>
-        <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
-          <h2 className="text-xl font-extrabold text-slate-900">New voucher request</h2>
-          <form className="mt-6 grid gap-5 sm:grid-cols-2" onSubmit={submit}>
-            <label className="grid gap-2 text-sm font-bold text-slate-700">Full name<input className="rounded-lg border border-slate-300 px-3 py-3 font-normal outline-none focus:border-sky-600 focus:ring-2 focus:ring-sky-100" name="customer_name" required maxLength={100} autoComplete="name" placeholder="Your full name" /></label>
-            <label className="grid gap-2 text-sm font-bold text-slate-700">Phone number<input className="rounded-lg border border-slate-300 px-3 py-3 font-normal outline-none focus:border-sky-600 focus:ring-2 focus:ring-sky-100" name="phone" required maxLength={30} autoComplete="tel" placeholder="07..." /></label>
-            <label className="grid gap-2 text-sm font-bold text-slate-700">Package / plan<input className="rounded-lg border border-slate-300 px-3 py-3 font-normal outline-none focus:border-sky-600 focus:ring-2 focus:ring-sky-100" name="package_name" required maxLength={100} placeholder="e.g. 2-hour Wi-Fi" /></label>
-            <label className="grid gap-2 text-sm font-bold text-slate-700">Amount (USD)<input className="rounded-lg border border-slate-300 px-3 py-3 font-normal outline-none focus:border-sky-600 focus:ring-2 focus:ring-sky-100" name="amount" required type="number" min="0.01" step="0.01" placeholder="1.00" /></label>
-            <label className="grid gap-2 text-sm font-bold text-slate-700 sm:col-span-2">EcoCash reference (optional)<input className="rounded-lg border border-slate-300 px-3 py-3 font-normal outline-none focus:border-sky-600 focus:ring-2 focus:ring-sky-100" name="payment_reference" maxLength={120} placeholder="Enter after payment" /></label>
-            <button className="rounded-lg bg-sky-700 px-5 py-3.5 font-extrabold text-white transition hover:bg-sky-800 focus:outline-none focus:ring-4 focus:ring-sky-200 sm:col-span-2" type="submit">Prepare request</button>
-            <p className="rounded-lg bg-amber-50 p-4 text-sm leading-6 text-amber-900 sm:col-span-2" role="status">{message}</p>
+
+      <main className="mx-auto grid max-w-7xl gap-8 px-5 py-8 sm:px-8 lg:grid-cols-[0.78fr_1.22fr] lg:gap-12 lg:py-14">
+        <aside className="relative isolate overflow-hidden rounded-3xl bg-slate-950 p-7 text-white sm:p-9 lg:p-10">
+          <div className="absolute -right-20 -top-20 -z-10 h-64 w-64 rounded-full bg-sky-500/25 blur-3xl" />
+          <div className="absolute -bottom-20 -left-20 -z-10 h-64 w-64 rounded-full bg-indigo-500/20 blur-3xl" />
+          <span className="inline-flex rounded-full border border-sky-300/20 bg-sky-300/10 px-3 py-1.5 text-[11px] font-extrabold uppercase tracking-[0.18em] text-sky-200">Customer workspace</span>
+          <h1 className="mt-7 text-4xl font-black leading-tight tracking-tight sm:text-5xl">Your next connection starts here.</h1>
+          <p className="mt-5 leading-7 text-slate-300">Complete the request details on this page. The TEPs Electronics team can then review your request and payment once the live system is connected.</p>
+          <div className="mt-9 space-y-4">
+            {[["01", "Your details", "Tell us who to contact."], ["02", "Package choice", "Select the plan you want."], ["03", "Payment review", "Payment must be checked before a voucher is issued."]].map(([num, title, description]) => <div key={num} className="flex gap-4"><span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl border border-white/10 bg-white/5 text-sm font-black text-sky-200">{num}</span><div><p className="font-bold">{title}</p><p className="mt-1 text-sm leading-6 text-slate-400">{description}</p></div></div>)}
+          </div>
+          <div className="mt-10 rounded-2xl border border-white/10 bg-white/[0.06] p-5"><p className="text-xs font-bold uppercase tracking-[0.16em] text-slate-400">Need assistance?</p><a href="tel:0771906932" className="mt-2 inline-block text-xl font-black text-sky-300 hover:text-sky-200">0771906932</a><p className="mt-1 text-sm text-slate-400">TEPs Electronics customer support</p></div>
+        </aside>
+
+        <section className="self-start rounded-3xl border border-slate-200 bg-white p-6 shadow-[0_20px_70px_-35px_rgba(15,23,42,0.25)] sm:p-9">
+          <div className="flex items-start justify-between gap-4"><div><p className="text-xs font-black uppercase tracking-[0.2em] text-sky-700">Voucher request</p><h2 className="mt-2 text-2xl font-black tracking-tight sm:text-3xl">Tell us what you need</h2><p className="mt-2 text-sm leading-6 text-slate-500">Fields marked required must be completed.</p></div><span className="hidden rounded-2xl bg-sky-50 p-3 text-2xl text-sky-700 sm:block">⌁</span></div>
+          <form className="mt-8 space-y-5" onSubmit={submit}>
+            <div className="grid gap-5 sm:grid-cols-2">
+              <label className="block text-sm font-bold text-slate-700">Full name <span className="text-rose-500">*</span><input className={inputClass + " mt-2"} name="customer_name" required maxLength={100} autoComplete="name" placeholder="e.g. Tendai Moyo" /></label>
+              <label className="block text-sm font-bold text-slate-700">Phone number <span className="text-rose-500">*</span><input className={inputClass + " mt-2"} name="phone" required maxLength={30} autoComplete="tel" placeholder="077 123 4567" /></label>
+            </div>
+            <label className="block text-sm font-bold text-slate-700">Wi-Fi package / plan <span className="text-rose-500">*</span><input className={inputClass + " mt-2"} name="package_name" required maxLength={100} placeholder="Enter the package name" /></label>
+            <div className="grid gap-5 sm:grid-cols-2">
+              <label className="block text-sm font-bold text-slate-700">Amount (USD) <span className="text-rose-500">*</span><div className="relative mt-2"><span className="absolute left-4 top-1/2 -translate-y-1/2 text-sm font-bold text-slate-400">$</span><input className={inputClass + " pl-9"} name="amount" required type="number" min="0.01" step="0.01" placeholder="0.00" /></div></label>
+              <label className="block text-sm font-bold text-slate-700">EcoCash reference <span className="font-normal text-slate-400">(optional)</span><input className={inputClass + " mt-2"} name="payment_reference" maxLength={120} placeholder="Payment reference, if available" /></label>
+            </div>
+            <div className="rounded-xl border border-amber-200 bg-amber-50 p-4"><p className="text-sm font-extrabold text-amber-950">Before you submit</p><p className="mt-1 text-sm leading-6 text-amber-900">This page is currently a preview. Do not enter real payment details; submissions are not saved or verified yet.</p></div>
+            <button className="flex w-full items-center justify-center gap-2 rounded-xl bg-sky-600 px-5 py-4 text-sm font-extrabold text-white shadow-lg shadow-sky-600/20 transition hover:-translate-y-0.5 hover:bg-sky-700 focus:outline-none focus:ring-4 focus:ring-sky-200" type="submit">Preview request <span aria-hidden="true">→</span></button>
+            {message && <p className="rounded-xl border border-sky-200 bg-sky-50 p-4 text-sm leading-6 text-sky-950" role="status">{message}</p>}
           </form>
         </section>
-        <footer className="mt-8 text-sm text-slate-500">Need help? Contact TEPs Electronics on <strong className="text-slate-700">0771906932</strong>.</footer>
       </main>
+      <footer className="border-t border-slate-200 bg-white"><div className="mx-auto flex max-w-7xl flex-col gap-2 px-5 py-5 text-xs text-slate-500 sm:px-8 sm:flex-row sm:items-center sm:justify-between"><span>© {new Date().getFullYear()} TEPs Electronics</span><span>Secure payment review will be enabled after backend setup.</span></div></footer>
     </div>
   );
 }
