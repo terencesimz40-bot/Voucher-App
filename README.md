@@ -3,7 +3,10 @@
 TEPs Electronics voucher request and administration application.
 
 ## Structure
-- `frontend/`: React + Next.js Pages Router application.
+- `frontend/pages/`: Next.js Pages Router entry points (route wrappers).
+- `frontend/client/`: client portal and landing-page code, styled with Tailwind utility classes.
+- `frontend/administration/`: administration pages and related code, styled with Tailwind utility classes.
+- `frontend/tailwind.css`: Tailwind CSS v4 import entry; there is no `styles/` directory.
 - `backend/`: Supabase SQL migrations, project config and Edge Functions (Deno runtime).
 - Vercel hosts the Next.js frontend; Supabase provides the database, authentication and server-side functions.
 
