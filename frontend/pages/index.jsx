@@ -1,1 +1,1 @@
-export { default } from "../client/pages/ClientPortalPage";
+export { default } from "../client/pages/HomePage";
