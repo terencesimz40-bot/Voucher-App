@@ -1,19 +1,30 @@
 # Vourcher-App
 
-TEPs Electronics voucher request and administration starter.
+TEPs Electronics Wi-Fi voucher request and administration application.
 
 ## Architecture
-- `frontend/`: static HTML, CSS and JavaScript; no Node.js web server.
-- `supabase/migrations/`: PostgreSQL schema scaffold with Row Level Security enabled.
-- `supabase/functions/`: Supabase Edge Function placeholders running on Supabase's Deno runtime.
+- `frontend/`: React + Vite single-page application. Vite/Node.js is used only to build the frontend; there is no separate Node.js backend server.
+- `backend/`: Supabase configuration, SQL migrations and Supabase Edge Functions (Deno runtime).
+- Vercel hosts the built React frontend; Supabase provides database, authentication and server-side functions.
 
 ## Current status
-This is a starter scaffold, not a live payment or voucher service. The frontend form is demo-only. EcoCash payment references are not automatically verified, and MikroTicket/MikroTik voucher generation is not connected. Do not use for real customer transactions until the functions, policies, authentication and integrations are implemented and tested.
+This repository is a starter scaffold. The request form is demo-only; it does not save requests. Payment confirmation, admin authentication and MikroTicket/MikroTik voucher generation are not yet implemented. Do not use it for real customer transactions until these flows are completed and tested.
 
-## Setup
-1. Review and apply the SQL migration in `supabase/migrations/` to your Supabase project.
-2. Set the Supabase project URL and publishable key in `frontend/shared/js/config.js` when frontend integration is implemented. Never put a service-role key in browser code.
-3. Deploy Edge Functions with the Supabase CLI when their implementations are ready.
-4. Configure Vercel as a static site with the project root set to `frontend` and no build/install command. The HTML entry point is `index.html`.
+## Frontend development
+```bash
+cd frontend
+npm install
+npm run dev
+``
+
+Build for deployment:
+```bash
+npm run build
+``
+
+Vercel settings: Framework Preset `Vite`, Root Directory `frontend`, Build Command `npm run build`, Output Directory `dist`.
+
+## Supabase backend
+The Supabase CLI configuration, migrations and Edge Functions live under `backend/`. Review the migration before applying it. Deploy functions only after implementing secure validation and authorization. Never put a Supabase service-role key in frontend code.
 
 Contact: TEPs Electronics, 0771906932.
