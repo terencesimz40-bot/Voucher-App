@@ -1,6 +1,33 @@
 import Link from "next/link";
 import { motion } from "motion/react";
 
+const blogPosts = [
+  {
+    category: "Wi-Fi Tips",
+    readTime: "4 min read",
+    title: "5 ways to improve your home Wi-Fi signal",
+    excerpt: "Simple placement and setup changes that can help reduce dead zones and make your connection more reliable.",
+    date: "Wi-Fi guide",
+    icon: "⌁",
+  },
+  {
+    category: "Networking",
+    readTime: "5 min read",
+    title: "What is a Wi-Fi extender and when do you need one?",
+    excerpt: "Learn how an extender can help reach rooms, offices and outdoor areas that your router struggles to cover.",
+    date: "Networking basics",
+    icon: "↗",
+  },
+  {
+    category: "Hotspot Help",
+    readTime: "3 min read",
+    title: "How Wi-Fi vouchers work",
+    excerpt: "A quick guide to requesting a voucher, submitting payment details safely and waiting for payment confirmation.",
+    date: "Customer guide",
+    icon: "✓",
+  },
+];
+
 const steps = [
   { number: "01", title: "Choose your package", text: "Tell us which Wi-Fi plan you need." },
   { number: "02", title: "Make your payment", text: "Pay using the payment method provided." },
@@ -16,7 +43,7 @@ export default function HomePage() {
             <span className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-sky-400 text-xl font-black text-slate-950 shadow-lg shadow-sky-500/20">T</span>
             <span className="min-w-0"><span className="block truncate text-base font-black tracking-tight sm:text-lg">TEPs Electronics</span><span className="mt-0.5 block text-[10px] font-bold uppercase tracking-[0.2em] text-sky-300 sm:text-xs">Wi-Fi voucher portal</span></span>
           </Link>
-          <a href="tel:0771906932" className="hidden rounded-xl border border-white/15 px-4 py-2.5 text-sm font-bold text-slate-200 transition hover:border-sky-300 hover:text-sky-200 sm:inline-flex">Call support</a>
+          <div className="flex items-center gap-2 sm:gap-3"><a href="#blog" className="rounded-xl px-3 py-2.5 text-sm font-bold text-slate-300 transition hover:text-sky-200">Blog</a><a href="tel:0771906932" className="hidden rounded-xl border border-white/15 px-4 py-2.5 text-sm font-bold text-slate-200 transition hover:border-sky-300 hover:text-sky-200 sm:inline-flex">Call support</a></div>
           <a href="tel:0771906932" aria-label="Call TEPs Electronics support" className="grid h-10 w-10 shrink-0 place-items-center rounded-xl border border-white/15 text-sky-200 sm:hidden">☎</a>
         </nav>
       </header>
@@ -46,7 +73,38 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="border-t border-white/10 bg-slate-900/70">
+
+      <section id="blog" className="border-t border-white/10 bg-slate-950 px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
+        <div className="mx-auto max-w-7xl">
+          <motion.div initial={{ opacity: 0, y: 22 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.25 }} transition={{ duration: 0.55, ease: "easeOut" }} className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
+            <div className="max-w-2xl">
+              <span className="inline-flex rounded-full border border-sky-300/20 bg-sky-300/10 px-3 py-1.5 text-xs font-extrabold uppercase tracking-[0.16em] text-sky-200">TEPs Electronics Blog</span>
+              <h2 className="mt-4 text-3xl font-black tracking-tight sm:text-4xl">Better Wi-Fi starts with good advice.</h2>
+              <p className="mt-3 max-w-xl text-sm leading-7 text-slate-400 sm:text-base">Helpful guides on Wi-Fi coverage, networking equipment and using your hotspot vouchers.</p>
+            </div>
+            <a href="tel:0771906932" className="inline-flex min-h-11 shrink-0 items-center justify-center rounded-xl border border-white/15 px-4 py-3 text-sm font-bold text-white transition hover:border-sky-300/40 hover:bg-white/5">Ask our team <span className="ml-2">↗</span></a>
+          </motion.div>
+          <div className="mt-9 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+            {blogPosts.map((post, index) => (
+              <motion.article key={post.title} initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.15 }} transition={{ duration: 0.45, delay: index * 0.1, ease: "easeOut" }} whileHover={{ y: -5 }} className="group flex h-full flex-col rounded-2xl border border-white/10 bg-white/[0.04] p-5 transition-colors hover:border-sky-300/30 hover:bg-white/[0.06] sm:p-6">
+                <div className="flex items-center justify-between gap-3">
+                  <span className="rounded-full bg-sky-300/10 px-3 py-1.5 text-xs font-bold text-sky-200">{post.category}</span>
+                  <span className="text-xs text-slate-500">{post.readTime}</span>
+                </div>
+                <span className="mt-6 grid h-12 w-12 place-items-center rounded-2xl border border-sky-300/15 bg-sky-300/10 text-2xl text-sky-200 transition group-hover:scale-105">{post.icon}</span>
+                <h3 className="mt-5 text-xl font-extrabold leading-snug tracking-tight">{post.title}</h3>
+                <p className="mt-3 flex-1 text-sm leading-6 text-slate-400">{post.excerpt}</p>
+                <div className="mt-6 flex items-center justify-between border-t border-white/10 pt-4 text-xs text-slate-500">
+                  <span>{post.date}</span>
+                  <span className="font-bold text-sky-200">Coming soon</span>
+                </div>
+              </motion.article>
+            ))}
+          </div>
+          <p className="mt-6 text-xs leading-5 text-slate-500">These article cards are a homepage preview. Full articles and blog management have not been connected yet.</p>
+        </div>
+      </section>
+\n      <section className="border-t border-white/10 bg-slate-900/70">
         <div className="mx-auto flex max-w-7xl flex-col gap-5 px-4 py-7 sm:px-6 md:flex-row md:items-center md:justify-between lg:px-8">
           <div><p className="text-sm font-extrabold">Need help with your request?</p><p className="mt-1 text-sm text-slate-400">Contact TEPs Electronics customer support.</p></div>
           <a href="tel:0771906932" className="inline-flex min-h-11 items-center justify-center rounded-xl border border-sky-300/20 bg-sky-300/10 px-5 py-3 text-sm font-extrabold text-sky-200 transition hover:bg-sky-300/15">☎ <span className="ml-2">0771906932</span></a>
