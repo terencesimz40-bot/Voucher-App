@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Link from "next/link";
+import { motion } from "motion/react";
 
 const fieldClass = "mt-2 block w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-base text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-sky-500 focus:ring-4 focus:ring-sky-100";
 
@@ -38,13 +39,13 @@ export default function ClientPortalPage() {
 
       <div className="mx-auto max-w-5xl px-4 py-8 sm:px-6 sm:py-12">
         <div className="mx-auto max-w-2xl">
-          <div className="mb-7 text-center">
+          <motion.div className="mb-7 text-center" initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, ease: "easeOut" }}>
             <span className="inline-flex rounded-full bg-sky-100 px-3 py-1.5 text-xs font-bold uppercase tracking-wider text-sky-800">Customer portal</span>
             <h1 className="mt-4 text-3xl font-black tracking-tight sm:text-4xl">Request your Wi-Fi voucher</h1>
             <p className="mx-auto mt-3 max-w-xl text-sm leading-6 text-slate-600 sm:text-base">Enter your contact details and package. TEPs Electronics will review your request and payment before issuing a voucher.</p>
-          </div>
+          </motion.div>
 
-          <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-8">
+          <motion.section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-8" initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55, delay: 0.12, ease: "easeOut" }}>
             <div className="mb-6 flex items-center gap-3 border-b border-slate-100 pb-5">
               <span className="grid h-11 w-11 place-items-center rounded-xl bg-sky-50 text-xl text-sky-700">⌁</span>
               <div><h2 className="font-extrabold">Request details</h2><p className="mt-1 text-sm text-slate-500">Fields marked * are required.</p></div>
@@ -85,7 +86,7 @@ export default function ClientPortalPage() {
               <button type="submit" className="flex w-full items-center justify-center rounded-xl bg-sky-600 px-5 py-3.5 font-extrabold text-white transition hover:bg-sky-700 focus:outline-none focus:ring-4 focus:ring-sky-200">Preview request <span className="ml-2" aria-hidden="true">→</span></button>
               {message && <p role="status" className="rounded-xl border border-sky-200 bg-sky-50 p-4 text-sm leading-6 text-sky-950">{message}</p>}
             </form>
-          </section>
+          </motion.section>
 
           <div className="mt-5 flex flex-col items-center justify-between gap-3 text-sm text-slate-500 sm:flex-row">
             <span>Need help? <a href="tel:0771906932" className="font-bold text-sky-700 hover:underline">0771906932</a></span>
