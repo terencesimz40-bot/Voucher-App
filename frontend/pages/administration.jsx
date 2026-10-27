@@ -1,5 +1,1 @@
-import AdministrationPage from "../administration/pages/AdministrationPage";
-
-export default function Administration() {
-  return <AdministrationPage />;
-}
+export { default } from "../administration/pages/AdministrationPage";
