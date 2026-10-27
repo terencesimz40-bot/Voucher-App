@@ -1,0 +1,16 @@
+project_id = "vdsekwtjurhuznyigfli"
+
+[functions.create-voucher-request]
+verify_jwt = false
+
+[functions.submit-payment-reference]
+verify_jwt = false
+
+[functions.confirm-payment]
+verify_jwt = true
+
+[functions.generate-voucher]
+verify_jwt = true
+
+[functions.mikroticket-integration]
+verify_jwt = true
